@@ -1,5 +1,9 @@
 # Simple twig integration for Google ReCaptcha
 
+* Google ReCaptcha V2 (invisible) : :white_check_mark:
+* Google ReCaptcha V2 (checkbox) : :x:
+* Google ReCaptcha V3 : :x:
+
 ## Installation
 
 It's very quick and easy, in 3 steps process
@@ -8,6 +12,7 @@ It's very quick and easy, in 3 steps process
 2. Enable the bundle
 3. Generate you key and secret key
 4. Configure the mael_recaptcha.yaml
+5. Editing your form and your view
 
 ### Step 1 : Install MaelRecaptchaBundle via composer
 
@@ -40,9 +45,54 @@ mael_recaptcha:
   secret: 'Your secret key'
 ```
 
-Or, if you want to use via environment variable
+### Step 5: Editing your form and your view
 
-``` dotenv
-GOOGLE_RECAPTCHA_KEY=Your key
-GOOGLE_RECAPTCHA_SECRET=Your secret key
-``` 
+#### For Google ReCaptcha V2 (invisible)
+
+In your form (ex: RegistrationForm), add a new field like :
+
+``` php
+->add('captcha', MaelRecaptchaSubmitType::class, [
+    'label' => 'Submit',
+    'attr' => ['class' => 'btn btn-primary'],
+    'constraints' => new MaelRecaptcha()
+])
+```
+
+Use **MaelRecaptchaSubmitType** for the captcha type in second parameter
+
+> Different types will be available soon
+
+For the third parameter, it's an array who _must have_ : `constraints` in key and in value, the constraint : `new MaelRecaptcha()`<br>
+It must also have `attr` key with `['id' => 'form-recaptcha']`<br><br>
+Or in the view : 
+ ```twig
+ {{ form_start(your_form, {'attr': {'id': 'form-recaptcha'}}) }}
+```
+ 
+To finish, add  2 `<script>` tags
+ 
+ ``` javascript
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    function onSubmitCaptcha(token) {
+        document.getElementById("form-recaptcha").submit();
+    }
+</script>
+```
+
+> _You didn't can change the function name !_
+
+#### For Google ReCaptcha V2 (checkbox)
+
+soon
+
+#### For Google ReCaptcha V3
+
+soon
+
+## Contributing
+
+List of contribution [HERE](https://github.com/Mael-91/MaelRecaptchaBundle/contributors)
+
+You want contribute ? Fork this repertory and create a pull request after change
