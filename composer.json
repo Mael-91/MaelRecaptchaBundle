@@ -1,0 +1,38 @@
+{
+    "name": "mael/recaptcha-bundle",
+    "type": "symfony-bundle",
+    "description": "Google recaptcha bundle for twig",
+    "keywords": ["google", "recaptcha", "captcha", "spam", "abuse", "twig", "symfony", "no-robot"],
+    "homepage": "https://github.com/Mael-91",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mael"
+        },
+        {
+            "name": "Community Contributions",
+            "homepage": "https://github.com/Mael-91/MaelRecaptchaBundle/contributors"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "google/recaptcha": "^1.2",
+        "symfony/config": "^4.4|^5.0",
+        "symfony/dependency-injection": "^4.4|^5.0",
+        "symfony/form": "^4.4|^5.0",
+        "symfony/http-foundation": "^4.4|^5.0",
+        "symfony/http-kernel": "^4.4|^5.0",
+        "symfony/options-resolver": "^4.4|^5.0",
+        "symfony/twig-pack": "*",
+        "symfony/validator": "^4.4|^5.0"
+    },
+    "suggest": {
+        "symfony/console": "For validating YAML files using the lint command",
+        "symfony/yaml": "To use YAML mapping"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mael\\MaelRecaptchaBundle\\": "src/"
+        }
+    }
+}

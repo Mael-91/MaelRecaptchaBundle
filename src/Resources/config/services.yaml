@@ -1,0 +1,18 @@
+services:
+  mael_recaptcha.type:
+    class: Mael\MaelRecaptchaBundle\Type\MaelRecaptchaSubmitType
+    tags: ['form.type']
+    arguments:
+        $key: '%mael_recaptcha.key%'
+  mael_recaptcha.validator:
+    class: Mael\MaelRecaptchaBundle\Validator\MaelRecaptchaValidator
+    tags: ['validator.constraint_validator']
+    arguments: ['@request_stack']
+    autowire: true
+  ReCaptcha\ReCaptcha:
+    class: ReCaptcha\ReCaptcha
+    arguments:
+      $secret: '%mael_recaptcha.secret%'
+      $requestMethod: '@ReCaptcha\RequestMethod'
+  ReCaptcha\RequestMethod: '@ReCaptcha\RequestMethod\CurlPost'
+  ReCaptcha\RequestMethod\CurlPost: ~
