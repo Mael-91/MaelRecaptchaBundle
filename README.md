@@ -1,7 +1,7 @@
 # Simple twig integration for Google ReCaptcha
 
 * Google ReCaptcha V2 (invisible) : :white_check_mark:
-* Google ReCaptcha V2 (checkbox) : :x:
+* Google ReCaptcha V2 (checkbox) : :white_check_mark:
 * Google ReCaptcha V3 : :x:
 
 ## Installation
@@ -49,7 +49,7 @@ mael_recaptcha:
 
 #### For Google ReCaptcha V2 (invisible)
 
-In your form (ex: RegistrationForm), add a new field like :
+In your form (ex: RegistrationType), add a new field like :
 
 ``` php
 ->add('captcha', MaelRecaptchaSubmitType::class, [
@@ -85,7 +85,32 @@ To finish, add  2 `<script>` tags
 
 #### For Google ReCaptcha V2 (checkbox)
 
-soon
+In your form (e.g: ContactType), add a new field like :
+
+``` php
+->add('captcha_checkvox', MaelRecaptchaCheckboxType::class, [
+    'constraints' => new MaelRecaptcha()
+])
+```
+
+> Different types will be available soon
+
+Use MaelRecaptchaCheckboxType for the captcha type in second parameter<br>
+
+For the third parameter, it's array who must have : `constraints` in key and `new MaelRecaptcha()` in value<br>
+If you use Bootstrap or another responsive framework, you can pass class for the genereted div 
+
+Example :
+``` php
+'attr' => [
+    'class' => 'col-md-4'
+]
+```
+In your view.html.twig, you should add `<script>` tag :
+
+``` javascript
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+```
 
 #### For Google ReCaptcha V3
 

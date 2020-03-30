@@ -4,6 +4,11 @@ services:
     tags: ['form.type']
     arguments:
         $key: '%mael_recaptcha.key%'
+  mael_recaptcha.checkbox.type:
+    class: Mael\MaelRecaptchaBundle\Type\MaelRecaptchaCheckboxType
+    tags: ['form.type']
+    arguments:
+      $key: '%mael_recaptcha.key%'
   mael_recaptcha.validator:
     class: Mael\MaelRecaptchaBundle\Validator\MaelRecaptchaValidator
     tags: ['validator.constraint_validator']
