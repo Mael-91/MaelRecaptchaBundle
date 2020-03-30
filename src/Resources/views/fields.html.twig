@@ -3,3 +3,7 @@
     {% set attr = attr | merge({class: (attr.class|default('')) ~ ' g-recaptcha', 'data-sitekey': key, 'data-callback': 'onSubmitCaptcha'}) %}
     {% block submit_widget %}{% endblock %}
 {% endblock %}
+
+{% block recaptcha_checkbox_widget %}
+    <div class=" g-recaptcha" data-sitekey="{{ key }}"></div>
+{% endblock %}
