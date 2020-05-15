@@ -6,13 +6,13 @@
 
 ## Installation
 
-It's very quick and easy, in 3 steps process
+It's very quick and easy, in 5 steps
 
 1. Install MaelRecaptchaBundle via composer
 2. Enable the bundle
 3. Generate you key and secret key
 4. Configure the mael_recaptcha.yaml
-5. Editing your form and your view
+5. Use the Recaptcha in your forms
 
 ### Step 1 : Install MaelRecaptchaBundle via composer
 
@@ -22,8 +22,14 @@ Run the following command :
 composer require mael/recaptcha-bundle
 ```
 
+You can quickly configure this bundle by using `symfony/flex` :
+
+- Answer **no** for `google/recpatcha`
+- Answer **yes** for `mael/recaptcha-bundle`
+
 ### Step 2: Enable the bundle
-Enable the bundle in you config/bundles.php
+
+Register bundle into `config/bundles.php`
 
 ``` php
 <?php
@@ -39,53 +45,54 @@ Go to the following link : http://www.google.com/recaptcha/admin
 
 ### Setp 4: Configure the mael_recaptcha.yaml
 
-``` yaml
-mael_recaptcha:
-  key: 'Your key'
-  secret: 'Your secret key'
+In you `.env` file
+
+Replace `YOUR_RECAPTCHA_KEY` by your public key and `YOUR_RECAPTCHA_SECRET` by your private key
+
+``` dotenv
+MAEL_RECAPTCHA_KEY=YOUR_RECAPTCHA_KEY
+MAEL_RECAPTCHA_SECRET=YOUR_RECAPTCHA_SECRET
 ```
 
 ### Step 5: Editing your form and your view
 
 #### For Google ReCaptcha V2 (invisible)
 
-In your form (ex: RegistrationType), add a new field like :
+To enable Recaptcha (invisible) protection on your form, you must use this type: `MaelRecaptchaSubmitType::class`
 
 ``` php
+// For example
 ->add('captcha', MaelRecaptchaSubmitType::class, [
     'label' => 'Submit',
-    'attr' => ['class' => 'btn btn-primary'],
     'constraints' => new MaelRecaptcha()
 ])
 ```
 
-Use **MaelRecaptchaSubmitType** for the captcha type in second parameter
+For the third parameter which is an array, you can add the constraint : `MaelRecaptcha`
 
-> Different types will be available soon
-
-For the third parameter, it's an array who _must have_ : `constraints` in key and in value, the constraint : `new MaelRecaptcha()`<br>
-It must also have `attr` key with `['id' => 'form-recaptcha']`<br><br>
-Or in the view : 
+Then, to complete the configuration of the invisible Recaptcha, in your twig file you need to add a id to your form
  ```twig
  {{ form_start(your_form, {'attr': {'id': 'form-recaptcha'}}) }}
 ```
  
 To finish, add  2 `<script>` tags
+
+Replace "id-of-your-form" by the class of your form add just above it
  
  ``` javascript
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     function onSubmitCaptcha(token) {
-        document.getElementById("form-recaptcha").submit();
+        document.getElementById("class-of-your-form").submit();
     }
 </script>
 ```
 
-> _You didn't can change the function name !_
+> __Warning, you cannot change the name of the JavaScript function.__
 
 #### For Google ReCaptcha V2 (checkbox)
 
-In your form (e.g: ContactType), add a new field like :
+To enable Recaptcha (checkbox) protection on your form, you must use this type: `MaelRecaptchaCheckboxType::class`
 
 ``` php
 ->add('captcha_checkvox', MaelRecaptchaCheckboxType::class, [
@@ -93,20 +100,9 @@ In your form (e.g: ContactType), add a new field like :
 ])
 ```
 
-> Different types will be available soon
+For the third parameter which is an array, you can add the constraint : `MaelRecaptcha`
 
-Use MaelRecaptchaCheckboxType for the captcha type in second parameter<br>
-
-For the third parameter, it's array who must have : `constraints` in key and `new MaelRecaptcha()` in value<br>
-If you use Bootstrap or another responsive framework, you can pass class for the genereted div 
-
-Example :
-``` php
-'attr' => [
-    'class' => 'col-md-4'
-]
-```
-In your view.html.twig, you should add `<script>` tag :
+To finish, in your twig file add  `<script>` tag
 
 ``` javascript
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -121,3 +117,7 @@ soon
 List of contribution [HERE](https://github.com/Mael-91/MaelRecaptchaBundle/contributors)
 
 You want contribute ? Fork this repertory and create a pull request after change
+
+## License
+
+You can find the [license](https://github.com/Mael-91/MaelRecaptchaBundle/blob/master/LICENSE) in the root directory

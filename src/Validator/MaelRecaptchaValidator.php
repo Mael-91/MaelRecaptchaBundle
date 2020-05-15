@@ -7,7 +7,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class MaelRecaptchaValidator  extends ConstraintValidator {
+class MaelRecaptchaValidator  extends ConstraintValidator
+{
 
     /**
      * @var RequestStack
@@ -18,14 +19,12 @@ class MaelRecaptchaValidator  extends ConstraintValidator {
      */
     private $reCaptcha;
 
-    public function __construct(RequestStack $requestStack, ReCaptcha $reCaptcha) {
+    public function __construct(RequestStack $requestStack, ReCaptcha $reCaptcha)
+    {
         $this->requestStack = $requestStack;
         $this->reCaptcha = $reCaptcha;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function validate($value, Constraint $constraint)
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -41,7 +40,8 @@ class MaelRecaptchaValidator  extends ConstraintValidator {
         }
     }
 
-    public function addViolation(Constraint $constraint): void {
+    public function addViolation(Constraint $constraint): void
+    {
         $this->context->buildViolation($constraint->message)->addViolation();
     }
 }
