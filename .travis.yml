@@ -19,12 +19,10 @@ before_install:
   - composer validate
   - composer install --prefer-dist --no-progress --no-suggest
   - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - bash <(curl -s https://codecov.io/bash)
 
 install:
   - composer create-project "symfony/skeleton:${SYMFONY_VERSION}" flex
   - cd flex
   - composer config extra.symfony.allow-contrib true
   - composer require mael/recaptcha-bundle --prefer-dist --no-progress --no-suggest
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
