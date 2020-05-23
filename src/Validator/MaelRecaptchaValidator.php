@@ -10,13 +10,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 class MaelRecaptchaValidator  extends ConstraintValidator
 {
 
-    /**
-     * @var RequestStack
-     */
     private $requestStack;
-    /**
-     * @var ReCaptcha
-     */
     private $reCaptcha;
 
     public function __construct(RequestStack $requestStack, ReCaptcha $reCaptcha)
@@ -40,7 +34,7 @@ class MaelRecaptchaValidator  extends ConstraintValidator
         }
     }
 
-    public function addViolation(Constraint $constraint): void
+    public function addViolation(Constraint $constraint)
     {
         $this->context->buildViolation($constraint->message)->addViolation();
     }

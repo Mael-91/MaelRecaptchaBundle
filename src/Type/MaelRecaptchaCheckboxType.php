@@ -12,9 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class MaelRecaptchaCheckboxType extends AbstractType
 {
 
-    /**
-     * @var string
-     */
     private $key;
 
     public function __construct(string $key)

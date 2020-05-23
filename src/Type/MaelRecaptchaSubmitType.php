@@ -32,7 +32,7 @@ class MaelRecaptchaSubmitType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['label'] = false;
+        $view->vars['label'] = null;
         $view->vars['key'] = $this->key;
         $view->vars['button'] = $options['label'];
     }

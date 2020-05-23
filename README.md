@@ -1,5 +1,14 @@
-# Simple twig integration for Google ReCaptcha
+<h1 style="display: flex; justify-content: center" align="center">MaelRecaptchaBundle for Symfony</h1>
 
+<div align="center" style="display: flex; justify-content: center">
+<img src="https://travis-ci.com/Mael-91/MaelRecaptchaBundle.svg?branch=master" style="padding-right: 10px">
+<img src="https://codecov.io/gh/Mael-91/MaelRecaptchaBundle/branch/master/graph/badge.svg" style="padding-right: 10px">
+<img src='https://bettercodehub.com/edge/badge/Mael-91/MaelRecaptchaBundle?branch=master'>
+</div>
+
+MaelRecaptchaBundle is a bundle allowing the integration of Google Recaptcha on a Symfony project.
+
+## Available features
 * Google ReCaptcha V2 (invisible) : :white_check_mark:
 * Google ReCaptcha V2 (checkbox) : :white_check_mark:
 * Google ReCaptcha V3 : :x:
@@ -8,11 +17,13 @@
 
 It's very quick and easy, in 5 steps
 
-1. Install MaelRecaptchaBundle via composer
-2. Enable the bundle
-3. Generate you key and secret key
-4. Configure the mael_recaptcha.yaml
-5. Use the Recaptcha in your forms
+1. [Install MaelRecaptchaBundle via composer](https://github.com/Mael-91/MaelRecaptchaBundle#step-1--install-maelrecaptchabundle-via-composer)
+2. [Enable the bundle](https://github.com/Mael-91/MaelRecaptchaBundle#step-2-enable-the-bundle)
+3. [Generate you key and secret key](https://github.com/Mael-91/MaelRecaptchaBundle#step-3-generate-your-key-and-secret-key)
+4. [Configure your key and secret key](https://github.com/Mael-91/MaelRecaptchaBundle#setp-4-configure-the-mael_recaptchayaml)
+5. [Use the Recaptcha in your forms](https://github.com/Mael-91/MaelRecaptchaBundle#step-5-editing-your-form-and-your-view)
+6. [Contributing](https://github.com/Mael-91/MaelRecaptchaBundle#contributing)
+7. [License](https://github.com/Mael-91/MaelRecaptchaBundle#license)
 
 ### Step 1 : Install MaelRecaptchaBundle via composer
 
@@ -43,7 +54,7 @@ return [
 
 Go to the following link : http://www.google.com/recaptcha/admin
 
-### Setp 4: Configure the mael_recaptcha.yaml
+### Setp 4: Configure your key and secret key
 
 In you `.env` file
 
@@ -107,10 +118,6 @@ To finish, in your twig file add  `<script>` tag
 ``` javascript
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 ```
-
-#### For Google ReCaptcha V3
-
-soon
 
 ## Contributing
 
