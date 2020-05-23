@@ -14,14 +14,15 @@ matrix:
     - php: 7.4
       env: SYMFONY_VERSION="^5.1"
 
-install:
+before_install:
   - composer self-update
   - composer validate
   - mkdir bundle
   - cd bundle
   - composer install --prefer-dist --no-progress --no-suggest
   - vendor/bin/phpunit --coverage-clover=coverage.xml
-  - cd ..
+
+install:
   - composer create-project "symfony/skeleton:${SYMFONY_VERSION}" flex
   - cd flex
   - composer config extra.symfony.allow-contrib true
