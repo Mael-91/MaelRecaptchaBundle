@@ -17,13 +17,14 @@ matrix:
 install:
   - composer self-update
   - composer validate
-  - composer create-project "symfony/website-skeleton:${SYMFONY_VERSION}" flex
+  - mkdir bundle
+  - cd bundle
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - cd ..
+  - composer create-project "symfony/skeleton:${SYMFONY_VERSION}" flex
   - cd flex
   - composer config extra.symfony.allow-contrib true
   - composer require mael/recaptcha-bundle --prefer-dist --no-progress --no-suggest
-
-script:
-  - bin/phpunit --coverage-clover=coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
