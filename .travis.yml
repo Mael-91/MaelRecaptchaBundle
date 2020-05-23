@@ -19,6 +19,7 @@ install:
   - composer validate
   - mkdir bundle
   - cd bundle
+  - composer install --prefer-dist --no-progress --no-suggest
   - vendor/bin/phpunit --coverage-clover=coverage.xml
   - cd ..
   - composer create-project "symfony/skeleton:${SYMFONY_VERSION}" flex
