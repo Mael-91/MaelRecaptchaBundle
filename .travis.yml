@@ -17,8 +17,6 @@ matrix:
 before_install:
   - composer self-update
   - composer validate
-  - mkdir bundle
-  - cd bundle
   - composer install --prefer-dist --no-progress --no-suggest
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 
